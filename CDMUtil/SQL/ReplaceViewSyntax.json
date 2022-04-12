@@ -1,0 +1,62 @@
+[
+  {
+    "Key": "STUFF(\r\n                            (SELECT\r\n                                    -- Prepend with delimiter and escape internal delimiters\r\n                                    DIMENSIONSEGMENTDELIMITER + COALESCE(\r\n                                        REPLACE(REPLACE(DIMLIST.DISPLAYVALUE, '\\', '\\\\'),\r\n                                                DIMENSIONSEGMENTDELIMITER,\r\n                                                DIMENSIONSEGMENTDELIMITERESCAPED),\r\n                                        '')",
+    "Value": " (SELECT Replace(STRING_AGG (COALESCE(REPLACE(DIMLIST.DISPLAYVALUE, '\\', '\\\\'),''), '@#@#@!£$') within group (order by DHL.DIMENSIONHIERARCHY, DHL.LEVEL_),'@#@#@!£$',DIMENSIONSEGMENTDELIMITER)"
+  },
+  {
+    "Key": "ORDER BY DHL.DIMENSIONHIERARCHY, DHL.LEVEL_\r\n                                FOR XML PATH(''), TYPE\r\n                            ).value('(./text())[1]', 'NVARCHAR(MAX)'),\r\n                            1, LEN(DIMENSIONSEGMENTDELIMITER), ''",
+    "Value": ""
+  },
+  {
+    "Key": "STUFF(\r\n                                            (SELECT\r\n                                                -- Prepend with delimiter and escape internal delimiters\r\n                                                DIMENSIONSEGMENTDELIMITER + COALESCE(\r\n                                                        REPLACE(REPLACE(DIMLIST.COLUMNVALUE, '\\', '\\\\'),\r\n                                                        DIMENSIONSEGMENTDELIMITER,\r\n                                                        DIMENSIONSEGMENTDELIMITERESCAPED),\r\n                                                    '')",
+    "Value": " (SELECT Replace(STRING_AGG (COALESCE(REPLACE(DIMLIST.COLUMNVALUE, '\\', '\\\\'),''), '@#@#@!£$') within group (order by DHL.DIMENSIONHIERARCHY, DHL.LEVEL_),'@#@#@!£$',DIMENSIONSEGMENTDELIMITER)"
+  },
+  {
+    "Key": "ORDER BY DHL.DIMENSIONHIERARCHY, DHL.LEVEL_\r\n                                                FOR XML PATH('')\r\n                                            ),\r\n                                            1, LEN(DIMENSIONSEGMENTDELIMITER), ''",
+    "Value": ""
+  },
+  {
+    "Key": ", T1.MEMO AS SALESMEMO",
+    "Value": ", null as SALESMEMO"
+  },
+  {
+    "Key": ", T1.MEMO AS NOTES",
+    "Value": ", null as NOTES"
+  },
+  {
+    "Key": ", T1.CREDMANNOTES AS CREDMANNOTES",
+    "Value": ", null as CREDMANNOTES"
+  },
+  {
+    "Key": " ELSE T1.STARTDATE1 - 1 END",
+    "Value": " ELSE DateAdd(Day, -1, T1.STARTDATE1) END"
+  },
+  {
+    "Key": " ELSE T1.STARTDATE1 - 1 END",
+    "Value": " ELSE DateAdd(Day, -1, T1.STARTDATE1) END"
+  },
+  {
+    "Key": " ELSE T1.STARTDATE2 - 1 END",
+    "Value": " ELSE DateAdd(Day, -1, T1.STARTDATE2) END"
+  },
+  {
+    "Key": "T1.DESCRIPTION AS DESCRIPTION",
+    "Value": "null AS DESCRIPTION",
+    "ViewName": "RETAILDISCOUNTENTITY"
+  },
+  {
+    "Key": "T1.DISCLAIMER AS DISCLAIMER",
+    "Value": "null AS DISCLAIMER",
+    "ViewName": "RETAILDISCOUNTENTITY"
+  },
+  {
+    "Key": "T1.GIFTCARDHISTORYDETAILS AS GIFTCARDHISTORYDETAILS",
+    "Value": "null AS GIFTCARDHISTORYDETAILS",
+    "ViewName": "RETAILTRANSACTIONENTITY"
+  },
+  {
+    "Key": "T1.PAYMENTCAPTURETOKEN AS PAYMENTCAPTURETOKEN",
+    "Value": "null AS PAYMENTCAPTURETOKEN",
+    "ViewName": "RETAILTRANSACTIONPAYMENTLINEV2ENTITY"
+  }
+]
